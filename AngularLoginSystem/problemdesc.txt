@@ -1,0 +1,5 @@
+Create a user management system using AngularJS, HTML, and CSS with the following functionalities:
+1. Login page - with username and password fields + login and register buttons
+2. Register page - with first name, last name, username and password fields + register and cancel registration fields
+3. Main page - with "Welcome, <user name>!" and link to view all other users.
+4. View users page - Show all registered users.
