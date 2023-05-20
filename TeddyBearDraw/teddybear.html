@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="teddyBearApp">
+<head>
+  <meta charset="utf-8"  content="width=device-width, height=device-height, initial-scale=1.0">
+  <title>Teddy Bear Drawing</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <script>
+    angular.module('teddyBearApp', [])
+      .controller('teddyBearCtrl', function($scope) {
+        $scope.canvas = {};
+        $scope.canvasSizeSet = false;
+        $scope.setCanvasSize = function() {
+            console.log($scope.canvas.height);
+            console.log($scope.canvas.width);
+            $scope.canvasSizeSet = true;
+        };
+        $scope.draw = function() {
+            var canvas = document.querySelector('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, $scope.canvas.width, $scope.canvas.height);
+
+            var headstartX = $scope.canvas.width/2;
+            var headstartY = $scope.canvas.height/3;
+
+            var bodystartX = $scope.canvas.width/2;
+            var bodystartY = $scope.canvas.height/3 + $scope.canvas.radius;
+
+            // Draw the head
+            ctx.beginPath();
+            ctx.arc(headstartX, headstartY, $scope.canvas.radius, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Draw the ears
+            ctx.beginPath();
+            ctx.arc(headstartX-$scope.canvas.radius, headstartY-$scope.canvas.radius, $scope.canvas.radius/3, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(headstartX+$scope.canvas.radius, headstartY-$scope.canvas.radius, $scope.canvas.radius/3, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Draw the body
+            ctx.beginPath();
+            ctx.moveTo(bodystartX, bodystartY);
+            ctx.lineTo(bodystartX, bodystartY+$scope.canvas.length);
+            ctx.stroke();
+
+            // Draw the arms
+            ctx.beginPath();
+            ctx.moveTo(bodystartX, bodystartY);
+            ctx.lineTo(bodystartX - $scope.canvas.length/2, bodystartY + $scope.canvas.length/3);
+            ctx.moveTo(bodystartX, bodystartY);
+            ctx.lineTo(bodystartX + $scope.canvas.length/2, bodystartY + $scope.canvas.length/3);
+            ctx.stroke();
+
+            // Draw the legs
+            ctx.beginPath();
+            ctx.moveTo(bodystartX, bodystartY+$scope.canvas.length);
+            ctx.lineTo(bodystartX - $scope.canvas.length/2, bodystartY+$scope.canvas.length + $scope.canvas.length/3);
+            ctx.moveTo(bodystartX, bodystartY+$scope.canvas.length);
+            ctx.lineTo(bodystartX + $scope.canvas.length/2, bodystartY+$scope.canvas.length + $scope.canvas.length/3);
+            ctx.stroke();
+
+        }
+      });
+  </script>
+  <style>
+    html{
+        width: 100vw;
+        height: 100vh;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        background-color: brown;
+        font-family: 'Century Schoolbook', "serif";
+        color: antiquewhite;
+    }
+    #canvas{
+        background: ivory;
+    }
+  </style>
+</head>
+<body ng-controller="teddyBearCtrl">
+    <div>
+        <div ng-if="!canvasSizeSet">
+        <label>Canvas Width:</label>
+        <input type="number" ng-model="canvas.width" min="1" max="1500">
+        <label>Canvas Height:</label>
+        <input type="number" ng-model="canvas.height" min="1" max="700">
+        <button ng-click="setCanvasSize()">Set Size</button>
+        </div>
+        <canvas id="canvas" ng-show="canvasSizeSet" width="{{canvas.width}}" height="{{canvas.height}}"></canvas>
+        <div ng-show="canvasSizeSet">
+            <label>Line length(max:{{canvas.width/2}}):</label>
+            <input type="number" ng-model="canvas.length" min="1" max="{{canvas.width/2}}">
+            <br>
+            <label>Circle radius(max:{{canvas.length/2}})</label>
+            <input type="number" ng-model="canvas.radius" min="1" max="{{canvas.length}}/2">
+            <button ng-click="draw()">Set parameters</button>
+            {{canvas.width}} x {{canvas.height}} px
+        </div>
+  </div>
+</body>
+</html>
