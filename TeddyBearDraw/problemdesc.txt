@@ -1,0 +1,2 @@
+Get canvas length and height from user, and show canvas once it is input using ng-show directive.
+Using Canvas API, draw a teddy bear with user-input parameters on the canvas.
