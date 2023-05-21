@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <title>User Registration</title>
+    </head>
+    <body ng-controller="RegCtrl">
+        <div class="form_wrapper">
+            <form class="user_form" ng-submit="regSubmit()">
+                <h1>Sign up</h1>
+                <div class="field_group">
+                    <p>First name</p>
+                    <input type="text" class="field" id="fname" ng-model="rform.fname" required>
+                </div>
+                <div class="field_group">
+                    <p>Last name</p>
+                    <input type="text" class="field" id="lname" ng-model="rform.lname" required>
+                </div>
+                <div class="field_group">
+                    <p>Username</p>
+                    <input type="text" class="field" id="uname" ng-model="rform.uname" required>
+                </div>
+                <div class="field_group">
+                    <p>Password</p>
+                    <input type="text" class="field" id="passw" ng-model="rform.passw" required>
+                </div>
+                <br><br>
+                <div class="button_group">
+                    <button class="form_button" type="submit">Register</button>
+                    <button class="form_button"><a href="login.html">Cancel</a></button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

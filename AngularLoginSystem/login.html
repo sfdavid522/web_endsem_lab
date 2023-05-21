@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <title>User login</title>
+    </head>
+    <body ng-controller="LogCtrl">
+        <div class="form_wrapper">
+            <form class="user_form" ng-submit="logSubmit()">
+                <h1>Login</h1>
+                <div class="field_group">
+                    <p>Username</p>
+                    <input type="text" class="field" id="uname" ng-model="lform.uname" required>
+                </div>
+                <div class="field_group">
+                    <p>Password</p>
+                    <input type="Password" class="field" id="passw" ng-model="lform.passw" required>
+                </div>
+                <br><br>
+                <div class="button_group">
+                    <button class="form_button" type="submit">Login</button>
+                    <button class="form_button"><a href="register.html">Register</a></button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
