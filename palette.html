@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
+    <title>Color palette</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("PCtrl", function($scope){
+            $scope.colorlist = [];
+            $scope.add_to_list = function(){
+                $scope.colorlist.push($scope.color_inp);
+            }
+        });
+    </script>
+    <style>
+        body{
+            font-family: "Helvetica Neue", "sans-serif";
+        }
+        .colorbox{
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body ng-controller="PCtrl">
+    <input type="color" id="color_picker" ng-change="add_to_list()" ng-model="color_inp">
+    <h1>Color palette</h1>
+    <ul id="color_palette" ng-repeat="color in colorlist">
+        <li>
+            {{color}}
+            <br>
+            <div class="colorbox" id={{color}} style="background-color: {{color}}";></div>
+        </li>
+    </ul>
+</body>
+</html>
