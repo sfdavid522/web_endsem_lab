@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #box{
+            background-color: whitesmoke;
+            border: solid 2px;
+            width: 100px;
+            height: 100px;
+        }
+
+
+        @keyframes goup{
+            from {
+                margin-bottom: 0px;
+            }
+            to {
+                margin-bottom: 200px;
+            }
+        }
+
+        
+        @keyframes godown{
+            from {
+                margin-bottom: 200px;
+            }
+            to {
+                margin-bottom: 0px;
+            }
+        }
+
+        .up{
+            animation-name: goup;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+     
+        .down{
+            animation-name: godown;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes cyellow{
+            from {
+                background-color: whitesmoke;
+            }
+            to {
+                background-color: yellow;
+            }
+        }
+
+        @keyframes cwhite{
+            from {
+                background-color: yellow;
+            }
+            to {
+                background-color: whitesmoke;
+            }
+        }
+
+        .plain{
+            animation-name: cwhite;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .colored{
+            animation-name: cyellow;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+    </style>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller('ACtrl', function($scope){
+            $scope.move = function(){
+                document.getElementById("box").classList = "";
+                if($scope.b1){
+                    document.getElementById("box").classList.remove("down");
+                    document.getElementById("box").classList.add("up");
+                }
+                else{
+                    document.getElementById("box").classList.remove("up");
+                    document.getElementById("box").classList.add("down");
+                }
+            };
+
+            $scope.cchange = function(){
+                document.getElementById("box").classList = "";
+                if($scope.b2){
+                    document.getElementById("box").classList.remove("plain");
+                    document.getElementById("box").classList.add("colored");
+                }
+                else{
+                    document.getElementById("box").classList.remove("colored");
+                    document.getElementById("box").classList.add("plain");
+                }
+            };
+        });
+    </script>
+    <title>AngularJS animations</title>
+</head>
+<body ng-controller="ACtrl">
+    <div style="height: 50%; display: flex; flex-direction: column; justify-content: flex-end;">
+        <div id="box">
+        </div>
+        <br><br>
+        <div id="controls">
+            <input type="checkbox" ng-change="move()" ng-model="b1" id="cb1">
+            <input type="checkbox" ng-change="cchange()" ng-model="b2" id="cb2">
+        </div>
+    </div>
+</body>
+</html>
